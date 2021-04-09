@@ -13,16 +13,21 @@ public class AppRepository {
     private UserDao userDao;
     private TodoDao todoDao;
     private LiveData<List<TodoOfUser>> userTodos;
+    private LiveData<List<Todo>> todos;
 
     public AppRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         userDao = db.userDao();
         todoDao = db.todoDao();
         userTodos = todoDao.getTodoWithUser();
+        todos = todoDao.getAllTodos();
     }
 
     public LiveData<List<TodoOfUser>> getUserTodos() {
         return userTodos;
+    }
+    public LiveData<List<Todo>> getAllTodos() {
+        return todos;
     }
 
     public User findUserByUserName(String username) {

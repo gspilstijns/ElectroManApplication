@@ -10,7 +10,24 @@
         android:id="@+id/txtUserName_Todo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="18dp"
         android:text="Username"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="17dp" />
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="403dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="54dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName_Todo"
+        tools:listitem="@layout/recyclerview_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,6 +34,8 @@ public abstract class AppDatabase extends RoomDatabase {
                         INSTANCE.clearAllTables();
                        // String firstName, String lastName, String username, String password
                         INSTANCE.userDao().insertUsers(new User("Gert-Jan","Spilstijns","gespi","test"));
+                        INSTANCE.todoDao().insertTodo(new Todo(1,"Test1"));
+                        INSTANCE.todoDao().insertTodo(new Todo(1,"Test2"));
                     });
 
                 }

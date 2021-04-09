@@ -18,14 +18,18 @@ public class TodoViewModel extends AndroidViewModel {
     private AppRepository appRepository;
 
     private LiveData<List<TodoOfUser>> userTodos;
+    private LiveData<List<Todo>> todos;
 
     public TodoViewModel(Application application) {
         super(application);
         appRepository = new AppRepository(application);
         userTodos = appRepository.getUserTodos();
+        todos = appRepository.getAllTodos();
     }
 
     public LiveData<List<TodoOfUser>> getUserTodos() {return userTodos;}
+
+    public LiveData<List<Todo>> getTodos() {return todos;}
 
     public void insertTodo(Todo todo, User user) {
         appRepository.insertTodo(todo,user);

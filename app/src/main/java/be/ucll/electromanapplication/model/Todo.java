@@ -1,6 +1,7 @@
 package be.ucll.electromanapplication.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -34,6 +35,18 @@ public class Todo {
     }
 
     public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Ignore
+    public Todo(int id, int userid, String description) {
+        this.id = id;
+        this.userid = userid;
+        this.description = description;
+    }
+
+    public Todo(int userid, String description) {
+        this.userid = userid;
         this.description = description;
     }
 }

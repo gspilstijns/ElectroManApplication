@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         final Button btnLogin = findViewById(R.id.btnLogin);
         final EditText username = findViewById(R.id.txtUserName);
-        final EditText password = findViewById(R.id.txtPassword);
+        final EditText txtpassword = findViewById(R.id.txtPassword);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,13 +32,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Search the user in the Room Database
                 User user = userViewModel.findUserByUserName(username.getText().toString());
+                String password = txtpassword.getText().toString();
+              /*  if (txtpassword.getText().toString().equals(user.getPassword())){
 
 
+                }*/
+                Intent intent = new Intent(getApplicationContext(), TodoActivity.class);
+                //intent.putExtra("FirstName", user.getFirstName());
+                startActivity(intent);
                 //Still to implement: validation before executing the intent
 
-                Intent intent = new Intent(getApplicationContext(), TodoActivity.class);
-                intent.putExtra("FirstName", user.getFirstName());
-                startActivity(intent);
+
 
             }
         });

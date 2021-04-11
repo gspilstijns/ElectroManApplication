@@ -23,11 +23,15 @@ public class TodoViewModel extends AndroidViewModel {
     public TodoViewModel(Application application) {
         super(application);
         appRepository = new AppRepository(application);
-        userTodos = appRepository.getUserTodos();
+        //userTodos = appRepository.getUserTodos();
+        //userTodos = appRepository.getUserTodos("gespi");
         todos = appRepository.getAllTodos();
     }
 
-    public LiveData<List<TodoOfUser>> getUserTodos() {return userTodos;}
+    //public LiveData<List<TodoOfUser>> getUserTodos() {return userTodos;}
+    public LiveData<List<Todo>> getUserTodos(String username) {
+        return appRepository.getUserTodos(username);
+    }
 
     public LiveData<List<Todo>> getTodos() {return todos;}
 

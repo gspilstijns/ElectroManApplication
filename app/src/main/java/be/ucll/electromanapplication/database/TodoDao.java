@@ -20,10 +20,7 @@ public interface TodoDao {
     void updateTodo(Todo todo);
 
     @Query("SELECT * FROM todo")
-    @Transaction
-    LiveData<List<TodoOfUser>> getTodoWithUser();
-
-    @Query("SELECT * FROM todo")
-    @Transaction
     LiveData<List<Todo>> getAllTodos();
+
+
 }

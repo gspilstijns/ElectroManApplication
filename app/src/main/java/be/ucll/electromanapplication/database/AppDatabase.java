@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import be.ucll.electromanapplication.model.Todo;
 import be.ucll.electromanapplication.model.User;
 
-@Database(entities = {User.class, Todo.class},version = 1, exportSchema = false)
+@Database(entities = {User.class, Todo.class},version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -28,14 +28,19 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "electroman_database")
+                            .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
                             .build();
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         INSTANCE.clearAllTables();
                        // String firstName, String lastName, String username, String password
-                        INSTANCE.userDao().insertUsers(new User("Gert-Jan","Spilstijns","gespi","test"));
-                        INSTANCE.todoDao().insertTodo(new Todo(1,"Test1"));
-                        INSTANCE.todoDao().insertTodo(new Todo(1,"Test2"));
+                        User user = new User("Gert-Jan","Spilstijns","gespi","test");
+                        INSTANCE.userDao().insertUsers(user);
+                        /*int userid = INSTANCE.userDao().findByUserName("gespi").getId();*/
+
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Laptop","ERR506","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),"Test notitie") );
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Printer","PRINT505","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),"Test notitie") );
+
                     });
 
                 }

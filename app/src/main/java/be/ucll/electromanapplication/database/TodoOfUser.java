@@ -12,6 +12,7 @@ public class TodoOfUser {
 
     @Embedded
     public User user;
+
     @Relation(parentColumn = "id",entityColumn = "userid")
     public List<Todo> todos;
 }

@@ -19,7 +19,7 @@ public class AppRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         userDao = db.userDao();
         todoDao = db.todoDao();
-        userTodos = todoDao.getTodoWithUser();
+        //userTodos = userDao.getTodoWithUser();
         todos = todoDao.getAllTodos();
     }
 
@@ -28,6 +28,10 @@ public class AppRepository {
     }
     public LiveData<List<Todo>> getAllTodos() {
         return todos;
+    }
+
+    public LiveData<List<Todo>> getUserTodos(String username){
+        return userDao.getTodoOfUser(username);
     }
 
     public User findUserByUserName(String username) {

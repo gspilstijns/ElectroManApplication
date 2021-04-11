@@ -32,14 +32,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Search the user in the Room Database
                 User user = userViewModel.findUserByUserName(username.getText().toString());
-                String password = txtpassword.getText().toString();
-              /*  if (txtpassword.getText().toString().equals(user.getPassword())){
+                //String password = txtpassword.getText().toString();
+               if (txtpassword.getText().toString().equals(user.getPassword())){
+                   Intent intent = new Intent(getApplicationContext(), TodoActivity.class);
+                   intent.putExtra("UserName", user.getUsername());
+                   startActivity(intent);
+                }
 
-
-                }*/
-                Intent intent = new Intent(getApplicationContext(), TodoActivity.class);
-                //intent.putExtra("FirstName", user.getFirstName());
-                startActivity(intent);
                 //Still to implement: validation before executing the intent
 
 

@@ -1,12 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+</LinearLayout>-->
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/todo_style"
-        android:layout_width="match_parent"
+
+<TableLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow>
+        <!--android:layout_width="match_parent"
+        android:layout_height="match_parent"-->
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
-</LinearLayout>
+        android:weightSum="2" >
+        <TextView
+            android:id="@+id/txtCustomerNameTitle"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="0.75"
+            android:background="@android:color/holo_orange_light"
+            android:text="Customer"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtCustomerName"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1.25"
+            android:background="@android:color/holo_orange_light"
+            android:text="Customer" />
+
+
+    </TableRow>
+    <TableRow>
+        <!--android:layout_width="match_parent"
+        android:layout_height="match_parent"-->
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2" >
+        <TextView
+            android:id="@+id/txtCityTitle"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="0.75"
+            android:background="@android:color/background_light"
+            android:text="City"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtCity"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1.25"
+            android:background="@android:color/background_light"
+            android:text="City" />
+
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtDeviceTitle"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="0.75"
+            android:background="@android:color/background_light"
+            android:text="Device"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtDevice"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1.25"
+            android:background="@android:color/background_light"
+            android:text="Device"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtProblemCodeTitle"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="0.75"
+            android:background="@android:color/background_light"
+            android:text="Problem code"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtProblemCode"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1.25"
+            android:background="@android:color/background_light"
+            android:text="ProblemCode" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtProcessedDateTime"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:background="@android:color/background_light"
+            android:text="Processed date"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_column="2"
+            android:background="@android:color/background_light"
+            android:text="Button" />
+
+
+    </TableRow>
+
+</TableLayout><!--style="@style/todo_style"-->
+
+
+
+

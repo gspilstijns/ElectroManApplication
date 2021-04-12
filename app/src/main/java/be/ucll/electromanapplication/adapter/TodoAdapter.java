@@ -50,6 +50,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
         @Override
         public void onClick(View v) {
+            /////////////////////////////////////////////////
+            /// Show dialog to update or edit workorder notes
+            //////////////////////////////////////////////////
             TodoViewModel mTodoViewModel =new TodoViewModel((Application) v.getContext().getApplicationContext());
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
             alertDialog.setTitle(mTodos.get(getAdapterPosition()).getDevice());
@@ -75,12 +78,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             });
             alertDialog.show();
 
-            if (v.getId() == todoItemActionButton.getId()) {
+           // if (v.getId() == todoItemActionButton.getId()) {
 
-                Toast.makeText(v.getContext(), "ITEM PRESSED = "+ mTodos.get(getAdapterPosition()).getDevice() , Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+             //   Toast.makeText(v.getContext(), "ITEM PRESSED = "+ mTodos.get(getAdapterPosition()).getDevice() , Toast.LENGTH_SHORT).show();
+            //} else {
+             //   Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            //}
 
            // listenerRef.get().onPositionClicked(getAdapterPosition());
         }

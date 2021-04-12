@@ -1,20 +1,28 @@
 package be.ucll.electromanapplication.adapter;
 
+import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 import be.ucll.electromanapplication.R;
 import be.ucll.electromanapplication.database.TodoOfUser;
 import be.ucll.electromanapplication.model.Todo;
+import be.ucll.electromanapplication.viewmodel.TodoViewModel;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
     private final ClickListener listener;
@@ -24,6 +32,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private final TextView todoItemDevice;
         private final TextView todoItemProblemCode;
         private final Button todoItemActionButton;
+        private final TextView todoItemProcessed;
+
 
        // private WeakReference<ClickListener> listenerRef;
 
@@ -33,12 +43,38 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             todoItemCustomer = itemView.findViewById(R.id.txtCustomerName);
             todoItemDevice = itemView.findViewById(R.id.txtDevice);
             todoItemProblemCode = itemView.findViewById(R.id.txtProblemCode);
-            todoItemActionButton = itemView.findViewById(R.id.button2);
+            todoItemActionButton = itemView.findViewById(R.id.TodoItemActionButton);
+            todoItemProcessed = itemView.findViewById(R.id.txtProcessedDateTime);
             todoItemActionButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            TodoViewModel mTodoViewModel =new TodoViewModel((Application) v.getContext().getApplicationContext());
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
+            alertDialog.setTitle(mTodos.get(getAdapterPosition()).getDevice());
+            alertDialog.setMessage("WorkOrder notes");
+            final EditText txtNotes = new EditText(v.getContext());
+            txtNotes.setText(mTodos.get(getAdapterPosition()).getNote());
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+            txtNotes.setLayoutParams(lp);
+            alertDialog.setView(txtNotes);
+
+            //Onclick listener for the Dialog to input/update notes
+            alertDialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Todo to_update = mTodos.get(getAdapterPosition());
+                    to_update.setNote(txtNotes.getText().toString());
+                    to_update.setProcessed(true);
+                    mTodoViewModel.updateTodo(to_update);
+                   // mTodos.get(getAdapterPosition()).setNote(txtNotes.getText().toString());
+                }
+            });
+            alertDialog.show();
+
             if (v.getId() == todoItemActionButton.getId()) {
 
                 Toast.makeText(v.getContext(), "ITEM PRESSED = "+ mTodos.get(getAdapterPosition()).getDevice() , Toast.LENGTH_SHORT).show();
@@ -76,6 +112,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             holder.todoItemCustomer.setText(current.getCustomerName());
             holder.todoItemDevice.setText(current.getDevice());
             holder.todoItemProblemCode.setText(current.getProblemCode());
+            holder.todoItemProcessed.setText(current.getProcessed().toString());
             if (current.getProcessed()){
                 holder.todoItemActionButton.setText("Edit Notes");
             }

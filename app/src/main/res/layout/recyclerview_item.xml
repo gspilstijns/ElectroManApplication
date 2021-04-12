@@ -116,7 +116,7 @@
             android:text="Processed date"
             android:textStyle="bold"/>
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/TodoItemActionButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

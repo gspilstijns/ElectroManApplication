@@ -6,6 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,13 +35,20 @@ public abstract class AppDatabase extends RoomDatabase {
                             .build();
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         INSTANCE.clearAllTables();
-                       // String firstName, String lastName, String username, String password
-                        User user = new User("Gert-Jan","Spilstijns","gespi","test");
-                        INSTANCE.userDao().insertUsers(user);
-                        /*int userid = INSTANCE.userDao().findByUserName("gespi").getId();*/
+                        // Create initial users
+                        List<User> userlist = new ArrayList<>();
+                        userlist.add(new User("Gert-Jan", "Spilstijns", "gespi", "gespi"));
+                        userlist.add(new User("Koen", "Serneels", "koser", "koser"));
+                        for (User user:userlist) {
+                            INSTANCE.userDao().insertUsers(user);
+                        }
 
-                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Laptop","ERR506","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),"Test notitie") );
-                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Printer","PRINT505","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),"Test notitie") );
+
+                        //Create some initial todo's in the Room database
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Scherm","No input","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Keyboard","Broken keys","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Laptop","ERR506","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Printer","PRINT505","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
 
                     });
 

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import be.ucll.electromanapplication.R;
 import be.ucll.electromanapplication.model.Todo;
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button btnLogin = findViewById(R.id.btnLogin);
         final EditText username = findViewById(R.id.txtUserName);
         final EditText txtpassword = findViewById(R.id.txtPassword);
+        TextView txtMessage = findViewById(R.id.txtMessage);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,14 +36,22 @@ public class LoginActivity extends AppCompatActivity {
                 //Search the user in the Room Database
                 User user = userViewModel.findUserByUserName(username.getText().toString());
                 //String password = txtpassword.getText().toString();
+                if (user != null) {
+                    //Validate the user login
+                    if (txtpassword.getText().toString().equals(user.getPassword())) {
+                        Intent intent = new Intent(getApplicationContext(), TodoActivity.class);
+                        intent.putExtra("UserName", user.getUsername());
+                        startActivity(intent);
+                        finish();
+                    } else {
 
-                //Validate the user login
-                if (txtpassword.getText().toString().equals(user.getPassword())){
-                    Intent intent = new Intent(getApplicationContext(), TodoActivity.class);
-                    intent.putExtra("UserName", user.getUsername());
-                    startActivity(intent);
+                        Toast.makeText(getApplicationContext(),"Something wrong",Toast.LENGTH_LONG).show();
+                        txtMessage.setText("Username or password is incorrect.");
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(),"Something wrong",Toast.LENGTH_LONG).show();
+                    txtMessage.setText("Username or password is incorrect.");
                 }
-
 
 
 

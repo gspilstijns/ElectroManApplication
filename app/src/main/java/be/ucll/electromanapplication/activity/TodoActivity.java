@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ public class TodoActivity extends AppCompatActivity {
 
     private TodoViewModel mTodoViewModel;
     private TextView txtUserName;
+    private Button btnLogout;
     TodoAdapter todoAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class TodoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_todo);
 
         txtUserName = findViewById(R.id.txtUserName_Todo);
+        btnLogout = findViewById(R.id.btnLogout);
 
         UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
@@ -47,6 +51,14 @@ public class TodoActivity extends AppCompatActivity {
         User user = userViewModel.findUserByUserName(getIntent().getStringExtra("UserName"));
         txtUserName.setText("Welcome " + user.getFirstName() + " " + user.getLastName());
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
 
@@ -65,7 +77,7 @@ public class TodoActivity extends AppCompatActivity {
         mTodoViewModel=new ViewModelProvider(this).get(TodoViewModel.class);
 
         //test to take only users specific todo's
-        mTodoViewModel.getUserTodos("gespi").observe(this, new Observer<List<Todo>>() {
+        mTodoViewModel.getUserTodos(user.getUsername()).observe(this, new Observer<List<Todo>>() {
             @Override
             public void onChanged(List<Todo> todoOfUsers) {
                 todoAdapter.setTodos(todoOfUsers);
@@ -73,4 +85,5 @@ public class TodoActivity extends AppCompatActivity {
         });
 
     }
+
 }

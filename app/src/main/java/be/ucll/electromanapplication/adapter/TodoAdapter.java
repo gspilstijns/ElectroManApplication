@@ -11,11 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private final TextView todoItemProblemCode;
         private final Button todoItemActionButton;
         private final TextView todoItemProcessed;
-
+        private final TextView todoItemNotes;
 
        // private WeakReference<ClickListener> listenerRef;
 
@@ -44,7 +41,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             todoItemDevice = itemView.findViewById(R.id.txtDevice);
             todoItemProblemCode = itemView.findViewById(R.id.txtProblemCode);
             todoItemActionButton = itemView.findViewById(R.id.TodoItemActionButton);
-            todoItemProcessed = itemView.findViewById(R.id.txtProcessedDateTime);
+            todoItemProcessed = itemView.findViewById(R.id.txtNotesTitle);
+            todoItemNotes = itemView.findViewById(R.id.txtNotes);
             todoItemActionButton.setOnClickListener(this);
         }
 
@@ -115,8 +113,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             holder.todoItemCustomer.setText(current.getCustomerName());
             holder.todoItemDevice.setText(current.getDevice());
             holder.todoItemProblemCode.setText(current.getProblemCode());
-            holder.todoItemProcessed.setText(current.getProcessed().toString());
+
             if (current.getProcessed()){
+                holder.todoItemNotes.setText(current.getNote());
                 holder.todoItemActionButton.setText("Edit Notes");
             }
             else{

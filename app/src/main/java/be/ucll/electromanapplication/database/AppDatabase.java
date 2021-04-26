@@ -45,11 +45,25 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
                         //Create some initial todo's in the Room database
-                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Scherm","No input","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
-                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Keyboard","Broken keys","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
-                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Laptop","ERR506","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
-                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Printer","PRINT505","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Scherm","PEBCAC","Peter Janssens",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Hasselt","Keyboard","Broken keys","Jan Peters",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Antwerpen","Laptop","ERR506","Wim Decroo",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Gent","Printer","PRINT505","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Brussel","Muis","No input","Koen Jans",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Oostende","Camera","Layer8","Chris VH",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Luik","Printer","ERR506","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Genk","Printer","PRINT505","Veronique Peeters",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Tessenderlo","Laptop","ID10T","Evelien Somers",false,INSTANCE.userDao().findByUserName("gespi").getId(),null) );
 
+                        INSTANCE.todoDao().insertTodo(new Todo("Leuven","Scherm","PEBCAC","Peter Janssens",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Hasselt","Keyboard","Broken keys","Jan Peters",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Antwerpen","Laptop","ERR506","Wim Decroo",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Gent","Printer","PRINT505","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Brussel","Muis","No input","Koen Jans",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Oostende","Camera","Layer8","Chris VH",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Luik","Printer","ERR506","Gert-Jan Spilstijns",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Genk","Printer","PRINT505","Veronique Peeters",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
+                        INSTANCE.todoDao().insertTodo(new Todo("Tessenderlo","Laptop","ID10T","Evelien Somers",false,INSTANCE.userDao().findByUserName("koser").getId(),null) );
                     });
 
                 }
